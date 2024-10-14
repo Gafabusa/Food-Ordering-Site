@@ -28,6 +28,7 @@ jobs:
 
       - name: Run migrations
         run: |
+          cd hotelsite
           python manage.py migrate  # Apply migrations (SQLite doesn't need a service setup)
 
       - name: Run tests

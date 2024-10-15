@@ -36,7 +36,7 @@ jobs:
       - name: Run tests with pytest
         run: |
           cd hotelsite
-          pytest --cov  # Run tests with coverage report
+          pytest 
 
       # Step 2: Run flake8 for code style checks (PEP 8)
       - name: Run code style checks with flake8

@@ -35,6 +35,8 @@ jobs:
         run: |
           cd hotelsite
           pytest  # Run automated tests using pytest
+        env:
+         DJANGO_SETTINGS_MODULE: hotelsite.settings
 
       - name: Run Flake8 for linting
         run: |

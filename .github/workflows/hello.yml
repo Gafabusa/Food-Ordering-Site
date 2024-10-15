@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # This specifies the environment where the workflow will run
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'  
+          python-version: '3.9'  # You can specify the version of Python you want
 
       - name: Install dependencies
         run: |
@@ -29,9 +29,18 @@ jobs:
       - name: Run migrations
         run: |
           cd hotelsite
-          python manage.py migrate  # Apply migrations (SQLite doesn't need a service setup)
+          python manage.py migrate  # Apply migrations
 
       - name: Run tests
         run: |
           cd hotelsite
-          python manage.py test  # Run Django tests
+          pytest  # Run automated tests using pytest
+
+      - name: Run Flake8 for linting
+        run: |
+          flake8 hotelsite --max-line-length=88  # Check for code quality issues
+
+      - name: Run coverage
+        run: |
+          coverage run -m pytest  # Run tests with coverage
+          coverage report  # Display the coverage report

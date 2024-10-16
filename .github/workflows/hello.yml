@@ -3,23 +3,23 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main  
+      - main  # Triggers the action on a push to the 'main' branch
   pull_request:
     branches:
-      - main  
+      - main  # Triggers the action on a pull request to the 'main' branch
 
 jobs:
   build:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest  # This specifies the environment where the workflow will run
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 
+        uses: actions/checkout@v2  # Check out your code from the repo
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'  
+          python-version: '3.9'  # Specify your Python version
 
       - name: Install dependencies
         run: |
@@ -29,9 +29,9 @@ jobs:
       - name: Run migrations
         run: |
           cd hotelsite
-          python manage.py migrate  # Apply migrations (SQLite doesn't need a service setup)
+          python manage.py migrate  # Apply migrations
 
-      - name: Run tests
+      - name: Run tests with pytest
         run: |
           cd hotelsite
-          python manage.py test  # Run Django tests
+          pytest  # Run tests with pytest

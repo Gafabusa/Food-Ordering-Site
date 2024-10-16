@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from .models import FoodItem, Order
 from .forms import OrderForm
 
-def index(request):
+def index(request): 
     return render(request, 'index.html', {})
 
 def about(request):
